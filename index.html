@@ -1,58 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/93w0gxnf/image-4.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rift Room</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    /* LOADING SCREEN */
+    #loadingScreen {
+      position: fixed;
+      inset: 0;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+
+    #loadingScreen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255,255,255,0.2);
+      border-top: 4px solid #00a2ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* PARTICLES */
+    canvas#particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* SOCIAL EFFECTS */
+    .social-item {
+      transition: transform 0.25s ease, text-shadow 0.25s ease;
+      display: block;
+      font-size: 18px;
+      opacity: 0.85;
+    }
+
+    .social-item:hover {
+      transform: scale(1.08);
+      text-shadow: 0 0 12px rgba(0,162,255,0.9);
+      opacity: 1;
+    }
+
+    .glow {
+      filter: drop-shadow(0 0 10px #00a2ff);
+    }
+
+    .bounce {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 8px;
+      box-shadow: 0 0 10px #22c55e;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
 </head>
-<body class="bg-black text-white font-sans">
+
+<body>
+
+<!-- LOADING -->
+<div id="loadingScreen">
+  <div class="loader"></div>
+  <p class="opacity-70">Entering Rift Room...</p>
+</div>
+
+<canvas id="particles"></canvas>
+
+<div class="content">
 
   <!-- HERO -->
   <section class="h-screen flex flex-col justify-center items-center text-center px-4">
-    <img src="https://i.ibb.co/Kp0V5wRb/output-onlinepngtools.png" alt="Rift Room Logo" class="w-32 h-32 mb-6" />
+    <img src="https://i.ibb.co/Kp0V5wRb/output-onlinepngtools.png" class="w-32 h-32 mb-6 glow" />
     <h1 class="text-5xl md:text-7xl font-bold mb-4">Rift Room</h1>
     <p class="text-xl md:text-2xl opacity-80 mb-6">They Had Their Time. This Is Ours.</p>
-    <p class="text-lg md:text-xl opacity-70 mb-6">Public Early Build Coming June 2026</p>
+
     <div class="flex flex-col md:flex-row gap-4">
-      <a href="https://discord.gg/4729PwzJnF" target="_blank" class="bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-2xl text-lg shadow-lg">
-        Enter the Rift
+      <a href="https://discord.gg/4729PwzJnF" class="bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-2xl bounce">
+        💬 Enter the Rift
       </a>
-      <a href="https://www.paypal.com/paypalme/expressstudio" target="_blank" class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded-2xl text-lg shadow-lg">
-        Support the Game
+
+      <a href="https://www.paypal.com/paypalme/expressstudio" class="bg-green-600 hover:bg-green-500 px-6 py-3 rounded-2xl bounce">
+        💚 Support the Game
       </a>
     </div>
   </section>
 
   <!-- ABOUT -->
   <section class="py-20 px-6 text-center max-w-3xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">What is Rift Room?</h2>
+    <h2 class="text-3xl font-bold mb-6">What is Rift Room?</h2>
+
+    <p class="opacity-80 text-lg mb-4">
+      Rift Room is a free-to-play VR/PC social multiplayer experience built around bringing people together in fun, creative, and immersive ways.
+    </p>
+
+    <p class="opacity-80 text-lg mb-4">
+      It supports VR and PC cross-play, letting players meet, explore, and hang out in shared virtual spaces.
+    </p>
+
+    <p class="opacity-80 text-lg mb-4">
+      Development began in November 2025 and continues to grow with new systems, worlds, and features.
+    </p>
+
+    <p class="opacity-80 text-lg mb-4">
+      The goal is simple: a long-term evolving social universe built around community, creativity, and shared experiences.
+    </p>
+
     <p class="opacity-80 text-lg">
-      Rift Room is a next-generation social gaming platform where you can create, explore, and live inside infinite worlds.
-      This isn’t just a game — it’s a new reality.
+      Expect constant updates, new environments, and expanding social features over time.
     </p>
   </section>
 
-  <!-- FEATURES -->
-  <section class="py-20 px-6 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
-    <div class="p-6 border border-white/10 rounded-2xl">
-      <h3 class="text-xl font-bold mb-2">Create</h3>
-      <p class="opacity-70">Build anything you can imagine.</p>
-    </div>
-    <div class="p-6 border border-white/10 rounded-2xl">
-      <h3 class="text-xl font-bold mb-2">Play</h3>
-      <p class="opacity-70">Jump into endless experiences.</p>
-    </div>
-    <div class="p-6 border border-white/10 rounded-2xl">
-      <h3 class="text-xl font-bold mb-2">Connect</h3>
-      <p class="opacity-70">Hang out beyond reality.</p>
+  <!-- SOCIAL -->
+  <section class="py-20 px-6 text-center max-w-3xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8">Join the Community</h2>
+
+    <div class="flex flex-col gap-5">
+
+      <a class="social-item" href="https://disc.gg/Rift-Room" target="_blank">
+        💬 Discord Server <span class="pulse-dot"></span>
+      </a>
+
+      <a class="social-item" href="https://reddit.com/r/RiftRoom" target="_blank">
+        👽 Reddit Community
+      </a>
+
+      <a class="social-item" href="http://rift-room.mooo.com/" target="_blank">
+        🌐 Official Website
+      </a>
+
+      <a class="social-item" href="https://rift-room.itch.io/rift-room" target="_blank">
+        🎮 Itch.io Page
+      </a>
+
+      <a class="social-item" href="mailto:riftroomcorp@gmail.com">
+        📧 Contact Email
+      </a>
+
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="text-center py-10 opacity-60">
     <p>© 2026 Rift Room. All rights reserved.</p>
   </footer>
+
+</div>
+
+<script>
+  // SAFE LOADER (NO MORE STUCK SCREEN)
+  function hideLoader() {
+    const loader = document.getElementById("loadingScreen");
+    if (!loader) return;
+    loader.classList.add("hidden");
+    setTimeout(() => loader.remove(), 700);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(hideLoader, 700);
+  });
+
+  setTimeout(hideLoader, 4000);
+
+  // PARTICLES
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+
+  const particles = [];
+
+  for (let i = 0; i < 80; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      r: Math.random() * 2 + 1
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(0,150,255,0.7)";
+
+    for (let p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
 
 </body>
 </html>
