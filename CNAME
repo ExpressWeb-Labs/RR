@@ -1,1 +1,3 @@
-rift-room.mooo.com
+| Type  | Name      | Target                    |
+| ----- | --------- | ------------------------- |
+| CNAME | rift-room | expressweb-labs.github.io |
